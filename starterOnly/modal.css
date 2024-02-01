@@ -105,14 +105,25 @@ img {
 
 
 @media screen and (max-width: 540px) {
+
+  .topnav {
+    margin: 0;
+  }
   .topnav a {
     display: none;
+    margin: 0;
+    padding: 15px 0px;
+  }
+
+  .topnav img{
+    width: 103px;
   }
 
   .topnav a.icon {
     float: right;
     display: block;
     margin-top: -15px;
+    color: #ff0000;
   }
 }
 
@@ -126,8 +137,6 @@ main {
   margin: 1px 20px 15px;
   border-radius: 2rem;
   text-align: justify;
-
-
 }
 
 .modal-btn {
@@ -571,6 +580,43 @@ footer {
   .copyrights {
     margin-top: 50px;
     text-align: center;
+  }
+}
+
+@media screen and (max-width: 540px) {
+  body{
+    padding: 30px;
+  }
+
+  main{
+    padding: 0;
+    margin: 0;
+  }
+
+  .hero-content{
+    padding: 0;
+    min-width: unset;
+  }
+
+  .hero-headline{
+    font-size: 40px;
+    font-weight: 500;
+    padding: 0;
+  }
+
+  .hero-text{
+    font-size: 13px;
+  }
+
+  .hero-section>.btn-signup {
+    width: 141px;
+    font-size: 14px;
+    font-family: 'DM Sans';
+    padding: 6px;
+  }
+
+  .copyrights{
+    font-size: 10px;
   }
 }
 
