@@ -37,7 +37,7 @@ function checkName(valueFirst){
     throw new Error("Veuillez entrer un prénom valide")
   }
   if (valueFirst.length <= 2){
-    throw new Error("Le prénom/nom n'est pas assez long")
+    throw new Error("Veuillez entrer plus de 2 caractères")
   }
 }
 
@@ -55,7 +55,7 @@ function checkNumber(valueQuantity){
   if(!regexNumber.test(valueQuantity)){
     throw new Error("Veuillez entrer un nombre valide")
   }
-  if (nom.length > 2){
+  if (valueQuantity.length > 2){
     throw new Error("Le nombre est trop grand")
   }
 }
