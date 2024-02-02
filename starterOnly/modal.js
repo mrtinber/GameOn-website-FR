@@ -70,9 +70,8 @@ function validate(){
   let valueEmail = emailAddress.value;
   checkEmail(valueEmail);
 
-  }catch(erreur){
-    alert("y'a un problème frère")
-    
+  }catch(error){
+    console.log(error.message)
   }
 
   return true;
