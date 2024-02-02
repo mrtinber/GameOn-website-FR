@@ -36,6 +36,9 @@ function checkName(valueFirst){
   if(!regexName.test(valueFirst)){
     throw new Error("Veuillez entrer un prénom valide")
   }
+  if (valueFirst.length <= 2){
+    throw new Error("Le prénom/nom n'est pas assez long")
+  }
 }
 
 //Email checking function
@@ -43,6 +46,17 @@ function checkEmail(valueEmail){
   let regexEmail = new RegExp("[a-z0-9._-]+@[a-z0-9._-]+\.[a-z0-9._-]+");
   if(!regexEmail.test(valueEmail)){
     throw new Error("Veuillez entrer une adresse email valide")
+  }
+}
+
+//Number of tournaments checking function
+function checkNumber(valueQuantity){
+  let regexNumber = new RegExp("[0-9]+");
+  if(!regexNumber.test(valueQuantity)){
+    throw new Error("Veuillez entrer un nombre valide")
+  }
+  if (nom.length > 2){
+    throw new Error("Le nombre est trop grand")
   }
 }
 
@@ -69,6 +83,25 @@ function validate(){
   //Test for the email address
   let valueEmail = emailAddress.value;
   checkEmail(valueEmail);
+
+  //Test for the choice of city
+  let radioChoice = document.querySelectorAll('input[name="location"]');
+  let cityChoice = ""; 
+  for (let i = 0; i < radioChoice.length; i++){
+    if (radioChoice[i].checked){
+      cityChoice = radioChoice[i].value;
+      break
+    }
+  }
+  if (cityChoice === "") {
+    throw new Error("Vous devez choisir une ville")
+  }
+
+  //Test for conditions agreement 
+  let approveConditions = conditions.checked;
+  if (approveConditions === false){
+    throw new Error("Vous devez accepter les conditions d'utilisation")
+  }
 
   }catch(error){
     console.log(error.message)
