@@ -30,13 +30,24 @@ function closeModal() {
 //Close modal event
 closeBtn.addEventListener("click", closeModal);
 
-//Name checking function
-function checkName(valueFirst){
+//First name checking function
+function checkFirst(valueFirst){
   let regexName = new RegExp("^[a-zA-Z]+$");
   if(!regexName.test(valueFirst)){
-    throw new Error("Veuillez entrer un prénom valide")
+    throw new Error("Veuillez entrer un prénom valide (pas de chiffres)")
   }
   if (valueFirst.length <= 2){
+    throw new Error("Veuillez entrer plus de 2 caractères")
+  }
+}
+
+//Last name checking function
+function checkLast(valueLast){
+  let regexName = new RegExp("^[a-zA-Z]+$");
+  if(!regexName.test(valueLast)){
+    throw new Error("Veuillez entrer un nom valide (pas de chiffres)")
+  }
+  if (valueLast.length <= 2){
     throw new Error("Veuillez entrer plus de 2 caractères")
   }
 }
@@ -74,15 +85,19 @@ function validate(){
 
   //Test for the first name
   let valueFirst = firstName.value;
-  checkName(valueFirst);
+  checkFirst(valueFirst);
 
   //Test for the last name
   let valueLast = lastName.value;
-  checkName(valueLast);
+  checkLast(valueLast);
 
   //Test for the email address
   let valueEmail = emailAddress.value;
   checkEmail(valueEmail);
+
+  //Test for the number of tournaments
+  let valueQuantity = quantityTournament.value;
+  checkNumber(valueQuantity);
 
   //Test for the choice of city
   let radioChoice = document.querySelectorAll('input[name="location"]');
