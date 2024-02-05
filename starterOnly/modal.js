@@ -12,7 +12,15 @@ const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
 const closeBtn = document.querySelector(".close");
-const form = document.querySelector('form');
+const form = document.querySelector('form'); 
+let firstName = document.getElementById("first");
+let lastName = document.getElementById("last");
+let emailAddress = document.getElementById("email");
+let birthDate = document.getElementById("birthdate");
+let quantityTournament = document.getElementById("quantity");
+let cityCheckbox = document.querySelectorAll("location");
+let conditions = document.getElementById("checkbox1");
+let inform = document.getElementById("checkbox2");
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
@@ -33,96 +41,125 @@ closeBtn.addEventListener("click", closeModal);
 //First name checking function
 function checkFirst(valueFirst){
   let regexName = new RegExp("^[a-zA-Z]+$");
-  if(!regexName.test(valueFirst)){
-    throw new Error("Veuillez entrer un prénom valide (pas de chiffres)")
-  }
-  if (valueFirst.length <= 2){
-    throw new Error("Veuillez entrer plus de 2 caractères")
+  if(valueFirst === ""){
+    setError(firstName, "Veuillez entrer votre prénom")
+  } else if(!regexName.test(valueFirst)){
+    setError(firstName, "Veuillez entrer un prénom valide (pas de chiffres)")
+  } else if (valueFirst.length <= 2){
+    setError(firstName, "Veuillez entrer plus de 2 caractères");
+  } else {
+    setSuccess(firstName);
   }
 }
 
 //Last name checking function
 function checkLast(valueLast){
   let regexName = new RegExp("^[a-zA-Z]+$");
-  if(!regexName.test(valueLast)){
-    throw new Error("Veuillez entrer un nom valide (pas de chiffres)")
-  }
-  if (valueLast.length <= 2){
-    throw new Error("Veuillez entrer plus de 2 caractères")
-
+  if(valueLast === ""){
+    setError(lastName, "Veuillez entrer votre nom")
+  } else if(!regexName.test(valueLast)){
+    setError(lastName, "Veuillez entrer un nom valide (pas de chiffres)")
+  } else if (valueLast.length <= 2){
+    setError (lastName, "Veuillez entrer plus de 2 caractères");
+  } else {
+    setSuccess (lastName);
   }
 }
 
 //Email checking function
 function checkEmail(valueEmail){
-  let regexEmail = new RegExp("[a-z0-9._-]+@[a-z0-9._-]+\.[a-z0-9._-]+");
-  if(!regexEmail.test(valueEmail)){
-    throw new Error("Veuillez entrer une adresse email valide")
+  let regexEmail = new RegExp("^[a-z0-9._-]+@[a-z0-9._-]+\.[a-z]+$");
+  if(valueEmail === ""){
+    setError(emailAddress, "Veuillez entrer votre e-mail")
+  } else if(!regexEmail.test(valueEmail)){
+    setError(emailAddress, "Veuillez entrer une adresse email valide");
+  } else {
+    setSuccess(emailAddress);
+  }
+}
+
+//Date of birth checking function
+function checkDate(valueDate){
+  let regexDate = new RegExp("^(0[1-9]|[1-2][0-9]|3[0-1])\/(0[1-9]|1[0-2])\/\d{4}$");
+  if(valueDate === ""){
+    setError(birthDate, "Veuillez entrer une date");
+  /*} else if (!regexDate.test(valueDate)){
+    setError(birthDate, "La date saisie n'est pas valide");*/
+  } else {
+    setSuccess(birthDate);
   }
 }
 
 //Number of tournaments checking function
 function checkNumber(valueQuantity){
   let regexNumber = new RegExp("[0-9]+");
-  if(!regexNumber.test(valueQuantity)){
-    throw new Error("Veuillez entrer un nombre valide")
-  }
-  if (valueQuantity.length > 2){
-    throw new Error("Le nombre est trop grand")
+  if(valueQuantity === ""){
+    setError(quantityTournament, "Veuillez entrer un nombre") 
+  } else if(!regexNumber.test(valueQuantity)){
+    setError (quantityTournament, "Veuillez entrer un nombre valide");
+  } else if (valueQuantity.length > 2){
+    setError (quantityTournament, "Le nombre est trop grand");
+  } else {
+    setSuccess(quantityTournament);
   }
 }
 
-//Validation of the form
-function validate(){
-  try{
-    
-  let firstName = document.getElementById("first");
-  let lastName = document.getElementById("last");
-  let emailAddress = document.getElementById("email");
-  let birthDate = document.getElementById("birthdate");
-  let quantityTournament = document.getElementById("quantity");
-  let conditions = document.getElementById("checkbox1");
-  let inform = document.getElementById("checkbox2");
-  var input = document.querySelector('.text-control');
-  var formDataError = document.querySelector('.formData');
-
-  //Test for the first name
-  let valueFirst = firstName.value;
-  checkFirst(valueFirst);
-
-  //Test for the last name
-  let valueLast = lastName.value;
-  checkLast(valueLast);
-
-  //Test for the email address
-  let valueEmail = emailAddress.value;
-  checkEmail(valueEmail);
-
-  //Test for the number of tournaments
-  let valueQuantity = quantityTournament.value;
-  checkNumber(valueQuantity);
-
-  //Test for the choice of city
-  let radioChoice = document.querySelectorAll('input[name="location"]');
-  let cityChoice = ""; 
-  for (let i = 0; i < radioChoice.length; i++){
-    if (radioChoice[i].checked){
+//Choice of city checking function
+function checkCity(radioChoice) {
+  let cityChoice = "";
+  for (let i = 0; i < radioChoice.length; i++) {
+    if (radioChoice[i].checked) {
       cityChoice = radioChoice[i].value;
-      break
+      break;
     }
   }
+
   if (cityChoice === "") {
-    throw new Error("Vous devez choisir une ville")
+    setError(radioChoice[0], "Vous devez choisir une ville");
+  } else {
+    setSuccess(radioChoice[0]);
   }
+  console.log(cityChoice);
+}
 
-  //Test for conditions agreement 
-  let approveConditions = conditions.checked;
-  if (approveConditions === false){
-    throw new Error("Vous devez accepter les conditions d'utilisation")
-  }
+//Error function
+function setError (element, message){
+  const inputControl = element.parentElement; 
 
-  }catch(error){
-    console.log(error.message)
+  inputControl.classList.add("error");
+  inputControl.classList.remove("success");
+  inputControl.setAttribute('data-error', message)
+}
+
+//Success function
+function setSuccess (element){
+  const inputControl = element.parentElement;
+
+  inputControl.classList.add("success");
+  inputControl.classList.remove("error");
+}
+
+//Validate function triggered by submit button (from HTML)
+function validate(){
+  const valueFirst = firstName.value.trim();
+  const valueLast = lastName.value.trim();
+  const valueEmail = emailAddress.value.trim();
+  const valueDate = birthDate.value.trim();
+  const valueQuantity = quantityTournament.value.trim();
+  const radioChoice = document.querySelectorAll('input[name="location"]');
+
+  checkFirst(valueFirst);
+  checkLast(valueLast);
+  checkEmail(valueEmail);
+  checkDate(valueDate);
+  checkNumber(valueQuantity);
+  checkCity(radioChoice);
+
+  //Agreement checking
+  if (conditions.checked === false){
+    setError(conditions, "Vous devez accepter les conditions d'utilisation");
+  } else {
+    setSuccess(conditions);
   }
 
   return true;
