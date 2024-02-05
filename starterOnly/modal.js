@@ -49,6 +49,7 @@ function checkLast(valueLast){
   }
   if (valueLast.length <= 2){
     throw new Error("Veuillez entrer plus de 2 caractères")
+
   }
 }
 
@@ -82,6 +83,8 @@ function validate(){
   let quantityTournament = document.getElementById("quantity");
   let conditions = document.getElementById("checkbox1");
   let inform = document.getElementById("checkbox2");
+  var input = document.querySelector('.text-control');
+  var formDataError = document.querySelector('.formData');
 
   //Test for the first name
   let valueFirst = firstName.value;
