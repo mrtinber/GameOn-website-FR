@@ -12,6 +12,7 @@ const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
 const closeBtn = document.querySelector(".close");
+const submitBtn = document.querySelector(".btn-submit")
 const form = document.querySelector('form'); 
 let firstName = document.getElementById("first");
 let lastName = document.getElementById("last");
@@ -21,6 +22,7 @@ let quantityTournament = document.getElementById("quantity");
 let cityCheckbox = document.querySelectorAll("location");
 let conditions = document.getElementById("checkbox1");
 let inform = document.getElementById("checkbox2");
+
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
@@ -165,8 +167,18 @@ function validate(){
   return true;
 }
 
+const successWindow = document.getElementById('successMessage');
+
 //Prevent default
 form.addEventListener("submit", (event) => {
   event.preventDefault();
   console.log("Page wasn't refreshed");
+
+  formData.forEach((element) => {
+    element.style.display = 'none';
+  });
+  submitBtn.forEach((btn) => {
+    btn.value = "Fermer";
+  });
+  successWindow.classList.add("show");
 });

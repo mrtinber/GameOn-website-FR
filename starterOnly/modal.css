@@ -35,10 +35,8 @@ img {
 .topnav {
   overflow: hidden;
   margin: 3.5%;
-  /*regroup navigation on the same line*/
   display: flex;
   justify-content: space-between;
-  align-items: center;
 }
 
 .header-logo {
@@ -170,6 +168,44 @@ main {
 }
 
 /* Modal form */
+
+form{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#successMessage{
+  display: none;
+}
+#successMessage.show{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin: 5% auto;
+  width: 100%;
+  max-width: 500px;
+  height: 850px;
+  background: #232323;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  color: #fff;
+  padding-top: 10px;
+}
+#successMessage button{
+  background: #fe142f;
+  display: block;
+  margin: 0 auto;
+  border-radius: 7px;
+  font-family: var(--font-default);
+  font-size: 1rem;
+  padding: 12px 82px;
+  color: #fff;
+  cursor: pointer;
+  border: 0;
+}
 
 .button {
   background: #fe142f;
@@ -377,6 +413,7 @@ input[data-error]::after {
   display: block;
   margin: 0 auto;
   border-radius: 7px;
+  font-family: var(--font-default);
   font-size: 1rem;
   padding: 12px 82px;
   color: #fff;
@@ -601,6 +638,10 @@ footer {
   main{
     padding: 0;
     margin: 0;
+  }
+
+  label, .text-label {
+    font-size: 14px;
   }
 
   .hero-content{
