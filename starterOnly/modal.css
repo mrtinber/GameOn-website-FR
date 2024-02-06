@@ -37,6 +37,7 @@ img {
   margin: 3.5%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .header-logo {
@@ -79,16 +80,28 @@ img {
   display: none;
 }
 
+/*Nav responsive for tablets*/
 @media screen and (max-width: 768px) {
+  .topnav{
+    margin: 0;
+  }
+
   .topnav a {
     display: none;
+  }
+
+  .topnav img{
+    width: 200px;
+    padding-right: 0;
   }
 
   .topnav a.icon {
     float: right;
     display: block;
+    color: #FE142F;
   }
 }
+
 
 @media screen and (max-width: 768px) {
   .topnav.responsive {
@@ -108,8 +121,7 @@ img {
   }
 }
 
-
-
+/*Nav responsive for mobiles*/
 @media screen and (max-width: 540px) {
 
   .topnav {
@@ -118,21 +130,22 @@ img {
   .topnav a {
     display: none;
     margin: 0;
-    padding: 15px 0px;
+    padding: 0;
   }
 
   .topnav img{
     width: 103px;
+    padding-right: 0;
   }
 
   .topnav a.icon {
     float: right;
     display: block;
-    margin-top: -15px;
     color: #FE142F;
   }
 }
 
+/*Style for main*/
 main {
   font-size: 130%;
   font-weight: bolder;
@@ -178,22 +191,20 @@ form{
 #successMessage{
   display: none;
 }
+
 #successMessage.show{
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 5% auto;
-  width: 100%;
-  max-width: 500px;
-  height: 100vh;
+  height: 600px;
   background: #232323;
-  border-radius: 10px;
-  overflow: hidden;
-  position: relative;
-  color: #fff;
-  padding-top: 10px;
+  font-size: 36px;
+  font-weight: 400;
+  font-family: var(--font-default);
+  text-align: center;
 }
+
 #successMessage button{
   background: #fe142f;
   display: block;
@@ -582,7 +593,17 @@ footer {
   margin: 0 20px;
 }
 
+/* Responsive for tablets*/
 @media screen and (max-width: 800px) {
+  body{
+    padding: 45px;
+  }
+
+  main{
+    padding: 0;
+    margin: 0;
+  }
+
   .hero-section {
     display: block;
     box-shadow: unset;
@@ -591,7 +612,7 @@ footer {
   .hero-content {
     background: #fff;
     color: #000;
-    padding: 20px;
+    padding: 0px;
   }
 
   .hero-content::after {
@@ -603,13 +624,15 @@ footer {
   }
 
   .hero-headline {
-    font-size: 4.5rem;
+    font-size: 3.5rem;
     white-space: normal;
+    margin-top: 20px;
   }
 
   .hero-text {
     width: unset;
     font-size: 1.5rem;
+    margin-top: 20px;
   }
 
   .hero-img img {
