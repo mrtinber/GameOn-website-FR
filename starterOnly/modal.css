@@ -181,12 +181,12 @@ form{
 #successMessage.show{
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   margin: 5% auto;
   width: 100%;
   max-width: 500px;
-  height: 850px;
+  height: 100vh;
   background: #232323;
   border-radius: 10px;
   overflow: hidden;
