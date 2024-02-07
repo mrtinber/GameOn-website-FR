@@ -12,16 +12,16 @@ const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
 const closeBtn = document.querySelector(".close");
-const submitBtn = document.querySelectorAll(".btn-submit")
+const submitBtn = document.querySelector(".btn-submit")
 const form = document.querySelector('form'); 
-let firstName = document.getElementById("first");
-let lastName = document.getElementById("last");
-let emailAddress = document.getElementById("email");
-let birthDate = document.getElementById("birthdate");
-let quantityTournament = document.getElementById("quantity");
-let cityCheckbox = document.querySelectorAll("location");
-let conditions = document.getElementById("checkbox1");
-let inform = document.getElementById("checkbox2");
+const firstName = document.getElementById("first");
+const lastName = document.getElementById("last");
+const emailAddress = document.getElementById("email");
+const birthDate = document.getElementById("birthdate");
+const quantityTournament = document.getElementById("quantity");
+const cityCheckbox = document.querySelectorAll("location");
+const conditions = document.getElementById("checkbox1");
+const inform = document.getElementById("checkbox2");
 const successWindow = document.getElementById('successMessage');
 
 
@@ -44,10 +44,10 @@ closeBtn.addEventListener("click", closeModal);
 //First name checking function
 function checkFirst(valueFirst){
   // Defining a regular expression to check the value: we only want letters
-  let regexName = new RegExp("^[a-zA-Z]+$");
+  let LETTERS_ONLY = new RegExp("^[a-zA-Z]+$");
   if(valueFirst === ""){
     setError(firstName, "Veuillez entrer votre prénom")
-  } else if(!regexName.test(valueFirst)){
+  } else if(!LETTERS_ONLY.test(valueFirst)){
     setError(firstName, "Veuillez entrer un prénom valide (pas de chiffres)")
   } else if (valueFirst.length <= 2){
     setError(firstName, "Veuillez entrer plus de 2 caractères");
@@ -61,10 +61,10 @@ function checkFirst(valueFirst){
 //Last name checking function
 function checkLast(valueLast){
   // Defining a regular expression to check the value: we only want letters
-  let regexName = new RegExp("^[a-zA-Z]+$");
+  let LETTERS_ONLY = new RegExp("^[a-zA-Z]+$");
   if(valueLast === ""){
     setError(lastName, "Veuillez entrer votre nom")
-  } else if(!regexName.test(valueLast)){
+  } else if(!LETTERS_ONLY.test(valueLast)){
     setError(lastName, "Veuillez entrer un nom valide (pas de chiffres)")
   } else if (valueLast.length <= 2){
     setError (lastName, "Veuillez entrer plus de 2 caractères");
@@ -92,12 +92,8 @@ function checkEmail(valueEmail){
 
 //Date of birth checking function
 function checkDate(valueDate){
-  // Defining a regular expression to check the value: we want a date with the following format dd/mm/yyyy
-  let regexDate = new RegExp("^(0[1-9]|[1-2][0-9]|3[0-1])\/(0[1-9]|1[0-2])\/\d{4}$");
   if(valueDate === ""){
     setError(birthDate, "Veuillez entrer une date");
-  /*} else if (!regexDate.test(valueDate)){
-    setError(birthDate, "La date saisie n'est pas valide");*/
   } else {
     // Triggering the success function and returning true for the validate function
     setSuccess(birthDate);
@@ -108,10 +104,10 @@ function checkDate(valueDate){
 //Number of tournaments checking function
 function checkNumber(valueQuantity){
   // Defining a regular expression to check the value : we only want numbers <=99
-  let regexNumber = new RegExp("[0-9]+");
+  let NUMBERS_ONLY = new RegExp("[0-9]+");
   if(valueQuantity === ""){
     setError(quantityTournament, "Veuillez entrer un nombre") 
-  } else if(!regexNumber.test(valueQuantity)){
+  } else if(!NUMBERS_ONLY.test(valueQuantity)){
     setError (quantityTournament, "Veuillez entrer un nombre valide");
   } else if (valueQuantity.length > 2){
     setError (quantityTournament, "Le nombre est trop grand");
@@ -216,11 +212,9 @@ function validate() {
 
     successWindow.classList.add("show");
 
-    submitBtn.forEach((btn) => {
-      btn.value = "Fermer";
-      btn.type = "button";
-      btn.addEventListener("click", closeModal);
-    });
+    submitBtn.value = "Fermer";
+    submitBtn.type = "button";
+    submitBtn.addEventListener("click", closeModal);
   } else {
     console.log("Validation failed. No additional actions performed.");
   }

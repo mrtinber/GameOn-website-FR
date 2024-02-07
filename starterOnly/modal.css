@@ -245,11 +245,12 @@ form{
   height: 100%;
   width: 100%;
   overflow: auto;
-  background-color: rgba(26, 39, 156, 0.4);
+  /*background-color: rgba(26, 39, 156, 0.4);*/
+  background-color: white;
 }
 
 .content {
-  margin: 5% auto;
+  margin: 75px auto;
   width: 100%;
   max-width: 500px;
   animation-name: modalopen;
@@ -323,6 +324,7 @@ input[data-error]::after {
   margin-left: 36px;
   font-size: 12px;
   font-weight: normal;
+  text-align: left;
 }
 
 .checkbox-label .checkbox-icon,
@@ -696,6 +698,10 @@ footer {
     font-size: 14px;
     font-family: var(--font-default);
     padding: 6px;
+  }
+
+  .bground{
+    background-color: transparent;
   }
 
   .copyrights{
