@@ -325,6 +325,7 @@ input[data-error]::after {
   font-size: 12px;
   font-weight: normal;
   text-align: left;
+  cursor: pointer;
 }
 
 .checkbox-label .checkbox-icon,
